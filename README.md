@@ -1,2 +1,14 @@
 # PDFEditSDK-Delphi
 Delphi Examples for PDF-XChangeEditCore SDK
+
+To make the sample working do the following steps:
+
+1) Download and install PDF-XChange Editor SDK http://www.tracker-software.com/product/pdf-xchange-editor-sdk
+
+2) Import ActiveX PDF-XChange Editor ![Import component](https://lh3.googleusercontent.com/IGR3tcRckk9t23zMB5slJPZ7NJyJCTWFdTtqutJ99aOm4IrfT5ZFCZZtMZBDetmGcRfh-y6C4OgcMXIK4NlTEV00DEEUHQkFniXcghrhb21d0BR0efxjf0y-yzIh37DuOPzpjMKG0jahRQitGdEG2YAPisHHpSZrwaQ0k5ypi2rE1a8ggLTy94tnQ16grKfV5I2K-fILI8rrXLA1nM7B6qi2PtfxA5CNtbhOjkRtZe4fSy4Ny5gyscxgWCG_hZGnhRai6T4VdnibT5Mg1beivmDT7Hi-CswrYJJuBA368HnbEnorZFMECG3dSpK__jd8N7DrDFDw4EuKKuXOCvxMhbauwAyUCTVUUucXgRQSQxroLhLHYn6DGkHM3P17yR4bH4qlLmD7X-PCFhBtfsuLW9t-i1z_1ZAfwYez3MFlg2QuwH4LeM5pCy6TC5d4DsXonaSdDuuQ-E11WF7cPElwWCDnfXexo4MQUrRKLlRvjx1MYJSDk6y4uGsuDtRvENuhUNJYwOrfx8g-Q4vhAmFVYC_FHizhoa57yZnMQorlH9TN0NuxQMkxafTl-wdyx30PVB0h=w621-h466-no)
+
+3) Launch the application
+
+
+# See Also
+http://sdkhelp.tracker-software.com/view/Main_Page
