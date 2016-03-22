@@ -15,6 +15,12 @@ object Form1: TForm1
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object Image1: TImage
+    Left = 304
+    Top = 312
+    Width = 209
+    Height = 105
+  end
   object PXV_Control1: TPXV_Control
     Left = 0
     Top = 0
@@ -47,6 +53,9 @@ object Form1: TForm1
       end
       object deletePage1: TMenuItem
         Action = deletePage
+      end
+      object N2: TMenuItem
+        Caption = '-'
       end
     end
     object Tool1: TMenuItem

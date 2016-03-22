@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Actions, Vcl.ActnList, Vcl.Menus,
-  PDFXEdit_TLB, Vcl.OleServer, Vcl.OleCtrls, Vcl.StdActns;
+  PDFXEdit_TLB, Vcl.OleServer, Vcl.OleCtrls, Vcl.StdActns, Vcl.ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -31,12 +31,15 @@ type
     About: TAction;
     Help1: TMenuItem;
     About1: TMenuItem;
+    N2: TMenuItem;
+    Image1: TImage;
     procedure FileOpen1Accept(Sender: TObject);
     procedure actVerifyPageLinksExecute(Sender: TObject);
     procedure insertPageExecute(Sender: TObject);
     procedure deletePageExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure AboutExecute(Sender: TObject);
+    procedure InsetPage1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -190,6 +193,11 @@ procedure TForm1.insertPageExecute(Sender: TObject);
 begin
   //
   gInst.InsertEmptyPage(PXV_Control1.Doc, 0, 1);
+end;
+
+procedure TForm1.InsetPage1Click(Sender: TObject);
+begin
+  gInst.InsertPagesTest();
 end;
 
 end.
