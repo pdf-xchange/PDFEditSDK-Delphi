@@ -4,7 +4,9 @@ uses
   Vcl.Forms,
   untMain in 'untMain.pas' {Form1},
   PDFInst in 'PDFInst.pas',
-  ABOUT in 'about.pas' {AboutBox};
+  about in 'about.pas' {AboutBox},
+  matrix in 'matrix.pas',
+  untImageView in 'untImageView.pas' {Form2};
 
 {$R *.res}
 
@@ -14,5 +16,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TAboutBox, AboutBox);
+  Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.

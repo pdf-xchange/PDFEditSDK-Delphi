@@ -32,14 +32,20 @@ type
     Help1: TMenuItem;
     About1: TMenuItem;
     N2: TMenuItem;
-    Image1: TImage;
+    RenderPage: TAction;
+    PagetoBitmap1: TMenuItem;
+    FileClose: TAction;
+    FileClose1: TMenuItem;
     procedure FileOpen1Accept(Sender: TObject);
     procedure actVerifyPageLinksExecute(Sender: TObject);
     procedure insertPageExecute(Sender: TObject);
     procedure deletePageExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure AboutExecute(Sender: TObject);
-    procedure InsetPage1Click(Sender: TObject);
+    procedure est1Click(Sender: TObject);
+    procedure RenderPageExecute(Sender: TObject);
+    procedure DocUpdate(Sender: TObject);
+    procedure FileCloseExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,7 +60,7 @@ implementation
 {$R *.dfm}
 
 uses
-  About, PDFInst;
+  About, PDFInst, untImageView;
 
 const
   licKeyDEMO: string  =
@@ -170,6 +176,16 @@ begin
   gInst.deletePages(PXV_Control1.Doc, 1, 1);
 end;
 
+procedure TForm1.est1Click(Sender: TObject);
+begin
+  gInst.InsertPagesTest();
+end;
+
+procedure TForm1.FileCloseExecute(Sender: TObject);
+begin
+  PXV_Control1.Doc.Close(0);
+end;
+
 procedure TForm1.FileOpen1Accept(Sender: TObject);
 var
   i: integer;
@@ -195,9 +211,21 @@ begin
   gInst.InsertEmptyPage(PXV_Control1.Doc, 0, 1);
 end;
 
-procedure TForm1.InsetPage1Click(Sender: TObject);
+procedure TForm1.DocUpdate(Sender: TObject);
 begin
-  gInst.InsertPagesTest();
+  (Sender as TAction).Enabled := Assigned(PXV_Control1.Doc);
+end;
+
+procedure TForm1.RenderPageExecute(Sender: TObject);
+var
+  Apage: IPXC_Page;
+  bmp: TBitmap;
+begin
+  PXV_Control1.Doc.CoreDoc.Pages.Get_Item(0, Apage);
+  bmp := TBitmap.Create;
+  gInst.BuildPageBitmap(Apage, bmp, 2048);
+  Form2.Image1.Picture.Bitmap := bmp;
+  Form2.Show();
 end;
 
 end.

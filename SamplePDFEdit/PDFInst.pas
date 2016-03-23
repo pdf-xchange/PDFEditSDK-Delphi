@@ -2,7 +2,7 @@ unit PDFInst;
 
 interface
 uses
-  System.SysUtils, PDFXEdit_TLB, Vcl.Graphics, math;
+  System.SysUtils, PDFXEdit_TLB, Vcl.Graphics, math, matrix;
 
 type
   TInst = class
@@ -43,10 +43,12 @@ var
   AWidth, AHeight: Double;
   W, H, ADPI: Integer;
   ARect: tagRECT;
-  AMatrix: PXC_Matrix;
+  APageMatrix: PXC_Matrix;
+  AMatrixRect: PXC_Matrix;
   AFlags: Integer;
   ARenderParams: IPXC_PageRenderParams;
   AOCContext: IPXC_OCContext;
+  srcRect: PXC_Rect;
 begin
   ADPI := 300;
 
@@ -91,12 +93,21 @@ begin
 
   B.SetSize(W, H);
 
-  APage.GetMatrix(PBox_MediaBox, AMatrix); //Is PBox_MediaBox correct here? I tried others but didn't seem to make a difference.
+  //Getting source page matrix
+  APage.GetMatrix(PBox_PageBox, APageMatrix);
   AFlags := DDF_AsVector;
   ARenderParams := nil;
   AOCContext := nil;
 
-  APage.DrawToDevice(B.Canvas.Handle, ARect, AMatrix, AFlags, ARenderParams, AOCContext, nil);
+  //Getting source page Page Box without rotation
+  APage.get_Box(PBox_PageBox, srcRect);
+  //Getting visual source Page Box by transforming it through matrix
+  TransformRect(APageMatrix, srcRect);
+  //We'll insert the visual src page into the image rectangle including page rotations and clipping
+  AMatrixRect := RectToRectMatrix(srcRect, ARect);
+  APageMatrix := Multiply(APageMatrix, AMatrixRect);
+
+  APage.DrawToDevice(B.Canvas.Handle, ARect, APageMatrix, AFlags, ARenderParams, AOCContext, nil);
 end;
 
 constructor TInst.Create;
@@ -190,16 +201,14 @@ begin
     BS.Item[1] := True;
     //hr := ADoc1.Pages.InsertPagesFromDocEx(ADoc2, APageCount1, BS, IPF_Annots_Copy + IPF_Bookmarks_CopyAll, nil);
     hr := ADoc1.Pages.InsertPagesFromDoc(ADoc2, 0, 1, 3, IPF_Annots_Copy or IPF_Bookmarks_CopyAll, nil);
-
     ADoc1.WriteToFile(PChar('c:\tmp\pagemix_1.pdf'), nil, 0);
-
   finally
   end;
 end;
 
 function TInst.P2X(x, dpi: double): double;
 begin
-  Result := x * 72 * dpi * 300;
+  Result := (x / 72) * dpi;
 end;
 
 begin

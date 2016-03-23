@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <assemblyIdentity version="1.0.0.0" name="WpfSimpleAppE"/>
+  <assemblyIdentity version="1.0.0.0" name="SamplePDFEdit"/>
+
+  <asmv3:application>
+  </asmv3:application>
+
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
@@ -38,6 +42,10 @@
       <!-- If your application is designed to work with Windows 8.1, uncomment the following supportedOS node-->
       <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}"/>-->
 
+   <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">
+      <dpiAware>True/PM</dpiAware>
+    </asmv3:windowsSettings>
+
     </application>
   </compatibility>
 
@@ -71,17 +79,15 @@
 			tlbid = "{0AAFF38C-CB91-4424-A8B9-F8B504ACBE0C}" />
 
   <!-- Enable themes for Windows common controls and dialogs (Windows XP and later) -->
-  <!-- <dependency>
+  <dependency>
     <dependentAssembly>
       <assemblyIdentity
-          type="win32"
-          name="Microsoft.Windows.Common-Controls"
-          version="6.0.0.0"
-          processorArchitecture="*"
-          publicKeyToken="6595b64144ccf1df"
-          language="*"
-        />
+        type="win32"
+        name="Microsoft.Windows.Common-Controls"
+        version="6.0.0.0"
+        publicKeyToken="6595b64144ccf1df"
+        language="*"
+        processorArchitecture="*"/>
     </dependentAssembly>
-  </dependency>-->
-
+  </dependency>
 </asmv1:assembly>

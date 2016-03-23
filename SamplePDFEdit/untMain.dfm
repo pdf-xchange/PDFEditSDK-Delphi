@@ -15,12 +15,6 @@ object Form1: TForm1
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Image1: TImage
-    Left = 304
-    Top = 312
-    Width = 209
-    Height = 105
-  end
   object PXV_Control1: TPXV_Control
     Left = 0
     Top = 0
@@ -39,6 +33,9 @@ object Form1: TForm1
       object Open2: TMenuItem
         Action = FileOpen1
       end
+      object FileClose1: TMenuItem
+        Action = FileClose
+      end
       object N1: TMenuItem
         Caption = '-'
       end
@@ -56,6 +53,9 @@ object Form1: TForm1
       end
       object N2: TMenuItem
         Caption = '-'
+      end
+      object PagetoBitmap1: TMenuItem
+        Action = RenderPage
       end
     end
     object Tool1: TMenuItem
@@ -83,6 +83,8 @@ object Form1: TForm1
     object FileOpen1: TFileOpen
       Category = 'File'
       Caption = '&Open...'
+      Dialog.DefaultExt = 'pdf'
+      Dialog.Filter = 'PDF file (*.pdf)|*.pdf|All files (*.*)|*.*'
       Hint = 'Open|Opens an existing file'
       ImageIndex = 7
       ShortCut = 16463
@@ -92,23 +94,38 @@ object Form1: TForm1
       Category = 'File'
       Caption = 'VerifyPageLinks'
       OnExecute = actVerifyPageLinksExecute
+      OnUpdate = DocUpdate
     end
     object insertPage: TAction
       Category = 'File'
       Caption = 'Insert Page'
       ShortCut = 16429
       OnExecute = insertPageExecute
+      OnUpdate = DocUpdate
     end
     object deletePage: TAction
       Category = 'File'
       Caption = 'Delete Page'
       ShortCut = 16430
       OnExecute = deletePageExecute
+      OnUpdate = DocUpdate
     end
     object About: TAction
       Category = 'File'
       Caption = 'About'
       OnExecute = AboutExecute
+    end
+    object RenderPage: TAction
+      Caption = 'Page to Bitmap'
+      OnExecute = RenderPageExecute
+      OnUpdate = DocUpdate
+    end
+    object FileClose: TAction
+      Category = 'File'
+      Caption = 'Close'
+      ShortCut = 16471
+      OnExecute = FileCloseExecute
+      OnUpdate = DocUpdate
     end
   end
   object FileOpenDialog1: TFileOpenDialog
