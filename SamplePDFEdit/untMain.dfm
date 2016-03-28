@@ -57,6 +57,9 @@ object Form1: TForm1
       object PagetoBitmap1: TMenuItem
         Action = RenderPage
       end
+      object DrawPage1: TMenuItem
+        Action = DrawPage
+      end
     end
     object Tool1: TMenuItem
       Caption = 'Tool'
@@ -125,6 +128,11 @@ object Form1: TForm1
       Caption = 'Close'
       ShortCut = 16471
       OnExecute = FileCloseExecute
+      OnUpdate = DocUpdate
+    end
+    object DrawPage: TAction
+      Caption = 'Draw Text to Page'
+      OnExecute = DrawPageExecute
       OnUpdate = DocUpdate
     end
   end

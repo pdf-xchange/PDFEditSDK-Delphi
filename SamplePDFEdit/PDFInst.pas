@@ -26,6 +26,7 @@ type
 
     procedure InsertPagesTest();
     procedure BuildPageBitmap(APage: IPXC_Page; var B: TBitmap; ASize: Integer);
+    procedure DrawText(ADoc: IPXC_Document);
   published
     { published declarations }
   end;
@@ -120,6 +121,40 @@ destructor TInst.Destroy;
 begin
   FInst := nil;
   inherited;
+end;
+
+procedure TInst.DrawText(ADoc: IPXC_Document);
+var
+  CC: IPXC_ContentCreator;
+  Content: IPXC_Content;
+  AFont: IPXC_Font;
+  AText: String;
+  AFontSize, x, y: Double;
+  APage: IPXC_Page;
+begin
+  if Assigned(ADoc) then
+  begin
+    AFontSize := 15;
+    AText := 'TESTING';
+    AFont := ADoc.CreateNewFont('Arial', 0, 400);
+
+    ADoc.Pages.Get_Item(0, APage); //Test Page is 612 x 792 points
+
+    //APage.Get_Box();
+    //Start roughly in the middle of the page
+    x := 100;
+    y := 60;
+
+    CC := ADoc.CreateContentCreator;
+    CC.SetTextRenderMode(TRM_Fill); //TRM_None;
+    CC.SetFont(AFont);
+    CC.SetFontSize(AFontSize);
+    CC.SetStrokeColorRGB(0); //Black
+    CC.ShowTextLine(x, y, PChar(AText), -1, 0);
+
+    CC.Detach(Content);
+    APage.PlaceContent(Content, PlaceContent_After);
+  end;
 end;
 
 procedure TInst.Init(inst: PDFXEdit_TLB.IPXV_Inst);

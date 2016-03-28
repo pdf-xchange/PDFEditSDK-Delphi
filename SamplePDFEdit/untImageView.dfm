@@ -27,7 +27,6 @@ object Form2: TForm2
     ShowHint = False
     TabOrder = 0
     Transparent = True
-    ExplicitTop = -6
     object ToolButton1: TToolButton
       Left = 0
       Top = 0
@@ -70,7 +69,7 @@ object Form2: TForm2
     Left = 440
     Top = 112
     Bitmap = {
-      494C010101000800140010001000E3E3E3002110FFFFFFFFFFFFFFFF424D3600
+      494C010101000800180010001000E3E3E3002110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000022000000330000003300000033000000330000
@@ -212,6 +211,14 @@ object Form2: TForm2
   object SavePictureDialog1: TSavePictureDialog
     DefaultExt = 'bmp'
     FileName = 'file_page'
+    Filter = 
+      'All (*.gif;*.png;*.jpg;*.jpeg;*.bmp;*.tif;*.tiff;*.ico;*.emf;*.w' +
+      'mf)|*.gif;*.png;*.jpg;*.jpeg;*.bmp;*.tif;*.tiff;*.ico;*.emf;*.wm' +
+      'f|GIF Image (*.gif)|*.gif|Portable Network Graphics (*.png)|*.pn' +
+      'g|JPEG Image File (*.jpg)|*.jpg|JPEG Image File (*.jpeg)|*.jpeg|' +
+      'Bitmaps (*.bmp)|*.bmp|TIFF Images (*.tif)|*.tif|TIFF Images (*.t' +
+      'iff)|*.tiff|Icons (*.ico)|*.ico|Enhanced Metafiles (*.emf)|*.emf' +
+      '|Metafiles (*.wmf)|*.wmf'
     FilterIndex = 6
     Left = 440
     Top = 176

@@ -36,10 +36,17 @@ uses
   Vcl.Imaging.jpeg, Vcl.Imaging.GIFImg, Vcl.Imaging.pngimage;
 
 procedure TForm2.SavePictureExecute(Sender: TObject);
+Var
+ img: TWICImage;
 begin
   if (SavePictureDialog1.Execute) then
   Begin
-    Image1.Picture.SaveToFile(SavePictureDialog1.FileName);
+    //GetEncoderClsid('image/jpeg', encoderClsid);
+    img := TWICImage.Create;
+    img.Assign(Image1.Picture.Graphic);
+    //img.ImageFormat := ;
+    img.SaveToFile(SavePictureDialog1.FileName);
+    //Image1.Picture.SaveToFile(SavePictureDialog1.FileName);
   End;
 end;
 

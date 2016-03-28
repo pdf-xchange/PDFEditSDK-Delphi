@@ -36,6 +36,8 @@ type
     PagetoBitmap1: TMenuItem;
     FileClose: TAction;
     FileClose1: TMenuItem;
+    DrawPage: TAction;
+    DrawPage1: TMenuItem;
     procedure FileOpen1Accept(Sender: TObject);
     procedure actVerifyPageLinksExecute(Sender: TObject);
     procedure insertPageExecute(Sender: TObject);
@@ -46,6 +48,7 @@ type
     procedure RenderPageExecute(Sender: TObject);
     procedure DocUpdate(Sender: TObject);
     procedure FileCloseExecute(Sender: TObject);
+    procedure DrawPageExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -214,6 +217,11 @@ end;
 procedure TForm1.DocUpdate(Sender: TObject);
 begin
   (Sender as TAction).Enabled := Assigned(PXV_Control1.Doc);
+end;
+
+procedure TForm1.DrawPageExecute(Sender: TObject);
+begin
+  gInst.DrawText(PXV_Control1.Doc.CoreDoc);
 end;
 
 procedure TForm1.RenderPageExecute(Sender: TObject);
