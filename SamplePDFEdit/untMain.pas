@@ -63,7 +63,7 @@ implementation
 {$R *.dfm}
 
 uses
-  About, PDFInst, untImageView;
+  About, PDFInst, untImageView, uDocAuthCallback;
 
 const
   licKeyDEMO: string  =
@@ -192,20 +192,47 @@ end;
 procedure TForm1.FileOpen1Accept(Sender: TObject);
 var
   i: integer;
+  APXC: IPXC_Inst;
+  clb:  TDocAuthCallback;
+  ADoc: IPXC_Document;
 begin
+  clb := TDocAuthCallback.Create(PXV_Control1.Inst);
+  APXC := PXV_Control1.Inst.GetExtension('PXC') as IPXC_Inst;
   for i := 0 to FileOpen1.Dialog.Files.Count - 1 do
-    PXV_Control1.OpenDocFromPath(FileOpen1.Dialog.Files[i], nil);
+  begin
+    //PXV_Control1.OpenDocFromPath(FileOpen1.Dialog.Files[i], nil);
+    ADoc := APXC.OpenDocumentFromFile(PWideChar(FileOpen1.Dialog.Files[i]), clb, nil, 0, 0);
+    PXV_Control1.OpenDocFrom(ADoc, nil);
+  end;
 end;
 
 
 procedure TForm1.FormShow(Sender: TObject);
 var
   inst: PDFXEdit_TLB.IPXV_Inst;
+
+  i: integer;
+  APXC: IPXC_Inst;
+  clb:  TDocAuthCallback;
+  ADoc: IPXC_Document;
+  str: String;
 begin
 	PXV_Control1.SetLicKey(licKeyDEMO);
 
   inst := PXV_Control1.Inst;
   gInst.Init(inst);
+
+
+  try
+    clb := TDocAuthCallback.Create(PXV_Control1.Inst);
+    APXC := PXV_Control1.Inst.GetExtension('PXC') as IPXC_Inst;
+
+    str := ExtractFilePath(Application.ExeName) + '..\..\YourNewFile.pdf';
+    ADoc := APXC.OpenDocumentFromFile(PWideChar(str), clb, nil, 0, 0);
+    PXV_Control1.OpenDocFrom(ADoc, nil);
+  except
+
+  end;
 end;
 
 procedure TForm1.insertPageExecute(Sender: TObject);

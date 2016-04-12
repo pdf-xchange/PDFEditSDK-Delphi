@@ -6,7 +6,8 @@ uses
   PDFInst in 'PDFInst.pas',
   about in 'about.pas' {AboutBox},
   matrix in 'matrix.pas',
-  untImageView in 'untImageView.pas' {Form2};
+  untImageView in 'untImageView.pas' {Form2},
+  uDocAuthCallback in 'uDocAuthCallback.pas';
 
 {$R *.res}
 
